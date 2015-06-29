@@ -13,12 +13,16 @@ post '/send_email' do
     m = Mandrill::API.new settings.api_key_mandrill
     template_name = settings.tag_mandrill
     template_content = [{
+    :name => 'name',
+    :content => params[:name]
+    },
+    {
      :name => 'email',
      :content => params[:email]
     },
     {
-     :name => 'comment',
-     :content => params[:comment]
+    :name => 'message',
+    :content => params[:message]
     }]
       message = {"to"=>
         [{"email"=>settings.email_mandrill,
