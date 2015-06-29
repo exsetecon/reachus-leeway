@@ -3,19 +3,12 @@ GEM
   specs:
     excon (0.45.3)
     json (1.8.2)
-    mail (2.6.3)
-      mime-types (>= 1.16, < 3)
     mandrill-api (1.0.53)
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
-    mime-types (2.4.3)
-    pony (1.11)
-      mail (>= 2.0)
     rack (1.6.0)
     rack-protection (1.5.3)
       rack
-    rack-recaptcha (0.6.6)
-      json
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -29,9 +22,7 @@ PLATFORMS
 DEPENDENCIES
   json
   mandrill-api
-  pony
   rack
-  rack-recaptcha
   sinatra
 
 BUNDLED WITH
