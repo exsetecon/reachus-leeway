@@ -10,8 +10,8 @@ end
     set :public_dir, Proc.new { File.join(root, "_site") }
 
 post '/send_email' do
-    m = Mandrill::API.new settings.api_key_mandrill
-    template_name = settings.tag_mandrill
+    m = Mandrill::API.new settings.api_key_mandrill_cnt
+    template_name = settings.tag_mandrill_cnt
     template_content = [{
     :name => 'name',
     :content => params[:name]
@@ -25,16 +25,69 @@ post '/send_email' do
     :content => params[:message]
     }]
       message = {"to"=>
-        [{"email"=>settings.email_mandrill,
+        [{"email"=>settings.email_mandrill_cnt,
             "type"=>"to",
             "name"=>"Exsete"}],
-     "subject"=>settings.subject_message_mandrill}
-      resp=m.messages.send_template template_name, template_content, message
+          "subject"=>settings.subject_message_mandril_cntl}
+    resp=m.messages.send_template_cnt template_name, template_content, message
     puts resp
     if resp[0]['status'] == 'sent'
       { :message => 'success' }.to_json
     else
       { :message => 'failure_email' }.to_json
+    end
+end
+
+post '/send_resume' do
+    m = Mandrill::API.new settings.api_key_mandrill_crs
+    template_name = settings.tag_mandrill_crs
+    template_content = [{
+            :name => 'name',
+            :content => params[:name]
+            },
+        {
+            :name => 'mobile',
+            :content => params[:mobile]
+            },
+        {
+            :name => 'address',
+            :content => params[:address]
+            },
+        {
+            :name => 'city',
+            :content => params[:city]
+            },
+        {
+            :name => 'email',
+            :content => params[:email]
+            },
+        {
+            :name => 'experience',
+            :content => params[:experience]
+            },
+        {
+            :name => 'salary',
+            :content => params[:salary]
+            },
+        {
+            :name => 'message',
+            :content => params[:message]
+            }]
+    message = {"attachments"=>
+            [{"type"=>params[:type],
+                "name"=>"resume.docx",
+                "content"=>params[:fileData]],
+            "to"=>
+            [{"email"=>settings.email_mandrill_crs,
+                "type"=>"to",
+                "name"=>"Exsete"}],
+        "subject"=>settings.subject_message_mandrill_crs}
+    resp=m.messages.send_template template_name, template_content, message
+    puts resp
+    if resp[0]['status'] == 'sent'
+        { :message => 'success' }.to_json
+    else
+        { :message => 'failure_email' }.to_json
     end
 end
 
