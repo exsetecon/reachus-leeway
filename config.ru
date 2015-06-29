@@ -4,7 +4,7 @@ require 'json'
 
 configure do
     set :api_key_mandrill => 'r1Q86cJ95LCrfGebCOvwkA',
-        :email_mandrill => 'connect@exsete.com',
+    :email_mandrill => 'udbhav@exsete.com',
         :tag_mandrill => 'contact-us',
         :subject_message_mandrill => "Leeway contact us form"
     end
