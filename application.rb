@@ -74,7 +74,7 @@ post '/send_resume' do
             :content => params[:message]
             }]
     message = {"attachments"=>
-            [{"type"=>params[:type],
+            [{"type"=>params[:mime],
                 "name"=>"resume.docx",
                 "content"=>params[:fileData]],
             "to"=>
