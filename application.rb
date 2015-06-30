@@ -27,7 +27,7 @@ post '/send_email' do
       message = {"to"=>
         [{"email"=>settings.email_mandrill_cnt,
             "type"=>"to",
-            "name"=>"Exsete"}],
+            "name"=>"Leeway"}],
           "subject"=>settings.subject_message_mandrill_cnt}
     resp=m.messages.send_template template_name, template_content, message
     puts resp
@@ -39,9 +39,9 @@ post '/send_email' do
 end
 
 post '/send_resume' do
-    m = Mandrill::API.new settings.api_key_mandrill_crs
-    template_name = settings.tag_mandrill_crs
-    template_content = [{
+    m_crs = Mandrill::API.new settings.api_key_mandrill_crs
+    template_name_crs = settings.tag_mandrill_crs
+    template_content_crs = [{
             :name => 'name',
             :content => params[:name]
             },
@@ -69,7 +69,7 @@ post '/send_resume' do
             :name => 'salary',
             :content => params[:salary]
             }]
-    message = {"to"=>
+    message_crs = {"to"=>
             [{"email"=>settings.email_mandrill_crs,
                 "type"=>"to",
                 "name"=>"Exsete"}],
@@ -78,10 +78,11 @@ post '/send_resume' do
                 "name"=>params[:fileName],
                 "content"=>params[:fileData]}],
         "subject"=>settings.subject_message_mandrill_crs}
-    resp=m.messages.send_template template_name, template_content, message
-    puts resp
-    puts resp[0]['status']
-    if resp[0]['status'] == 'sent'
+    resp_crs=m_crs.messages.send_template template_name_crs, template_content_crs, message_crs
+    puts "response"
+    puts resp_crs
+    puts resp_crs[0]['status']
+    if resp_crs[0]['status'] == 'sent'
         { :message => 'success' }.to_json
     else
         { :message => 'failure_email' }.to_json
