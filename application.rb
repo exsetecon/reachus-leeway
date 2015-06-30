@@ -73,14 +73,14 @@ post '/send_resume' do
             :name => 'message',
             :content => params[:message]
             }]
-    message = {"attachments"=>
-            [{"type"=>params[:Mime],
-                "name"=>"resume.docx",
-                "content"=>params[:fileData]],
-            "to"=>
+    message = {"to"=>
             [{"email"=>settings.email_mandrill_crs,
                 "type"=>"to",
                 "name"=>"Exsete"}],
+            "attachments"=>
+            [{"type"=>params[:Mime],
+                "name"=>"resume.docx",
+                "content"=>params[:fileData]}],
         "subject"=>settings.subject_message_mandrill_crs}
     resp=m.messages.send_template template_name, template_content, message
     puts resp
