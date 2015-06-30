@@ -31,7 +31,7 @@ post '/send_email' do
           "subject"=>settings.subject_message_mandrill_cnt}
     resp=m.messages.send_template template_name, template_content, message
     puts resp
-    if resp[0]['status'] == 'sent'
+    if resp[0]['status'] == 'sent' || resp[0]['status'] == 'queued'
       { :message => 'success' }.to_json
     else
       { :message => 'failure_email' }.to_json
@@ -81,8 +81,7 @@ post '/send_resume' do
     resp_crs=m_crs.messages.send_template template_name_crs, template_content_crs, message_crs
     puts "response"
     puts resp_crs
-    puts resp_crs[0]['status']
-    if resp_crs[0]['status'] == 'sent'
+    if resp_crs[0]['status'] == 'sent' || resp_crs[0]['status'] == 'queued'
         { :message => 'success' }.to_json
     else
         { :message => 'failure_email' }.to_json
