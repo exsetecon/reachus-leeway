@@ -81,7 +81,6 @@ post '/send_resume' do
     resp=m.messages.send_template template_name, template_content, message
     puts resp
     puts resp[0]['status']
-    puts params[:fileData]
     if resp[0]['status'] == 'sent'
         { :message => 'success' }.to_json
     else
