@@ -29,7 +29,7 @@ post '/send_email' do
             "type"=>"to",
             "name"=>"Exsete"}],
           "subject"=>settings.subject_message_mandrill_cnt}
-    resp=m.messages.send_template_cnt template_name, template_content, message
+    resp=m.messages.send_template template_name, template_content, message
     puts resp
     if resp[0]['status'] == 'sent'
       { :message => 'success' }.to_json
