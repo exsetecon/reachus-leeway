@@ -72,7 +72,7 @@ post '/send_resume' do
     message_crs = {"to"=>
             [{"email"=>settings.email_mandrill_crs,
                 "type"=>"to",
-                "name"=>"Exsete"}],
+                "name"=>"Leeway"}],
             "attachments"=>
             [{"type"=>params[:Mime],
                 "name"=>params[:fileName],

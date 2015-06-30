@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '1.8.7'
+ruby '2.2.2'
 gem 'rack'
 gem 'sinatra'
 gem 'json'
