@@ -47,7 +47,7 @@ post '/send_resume' do
             },
         {
             :name => 'mobile',
-            :content => params[:mobile]
+            :content => params[:mobileNo]
             },
         {
             :name => 'address',
@@ -68,10 +68,6 @@ post '/send_resume' do
         {
             :name => 'salary',
             :content => params[:salary]
-            },
-        {
-            :name => 'message',
-            :content => params[:message]
             }]
     message = {"to"=>
             [{"email"=>settings.email_mandrill_crs,
@@ -79,7 +75,7 @@ post '/send_resume' do
                 "name"=>"Exsete"}],
             "attachments"=>
             [{"type"=>params[:Mime],
-                "name"=>"resume.docx",
+                "name"=>params[:fileName],
                 "content"=>params[:fileData]}],
         "subject"=>settings.subject_message_mandrill_crs}
     resp=m.messages.send_template template_name, template_content, message
