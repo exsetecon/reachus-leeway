@@ -21,6 +21,14 @@ post '/send_email' do
      :content => params[:email]
     },
     {
+        :name => 'industry',
+        :content => params[:industry]
+    },
+    {
+        :name => 'phone',
+        :content => params[:phone]
+    },
+    {
     :name => 'message',
     :content => params[:message]
     }]
